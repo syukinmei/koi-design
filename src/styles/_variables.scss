@@ -37,25 +37,25 @@ $dark: $gray-8 !default;
 
 /* 颜色主题 */
 $theme-colors: (
-    "primary": $primary,
-    "secondary": $secondary,
-    "success": $success,
-    "info": $info,
-    "warning": $warning,
-    "danger": $danger,
-    "light": $light,
-    "dark": $dark,
+  "primary": $primary,
+  "secondary": $secondary,
+  "success": $success,
+  "info": $info,
+  "warning": $warning,
+  "danger": $danger,
+  "light": $light,
+  "dark": $dark,
 );
 
 /* 主要字体家族 */
 // 无衬线字体
 $font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
-    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
+  "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+  "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
 
 // 等宽字体（代码展示有更多的优势）
 $font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
-    "Liberation Mono", "Courier New", monospace !default;
+  "Liberation Mono", "Courier New", monospace !default;
 $font-family-base: $font-family-sans-serif !default;
 
 /* 字体大小 */
@@ -99,7 +99,7 @@ $body-text-align: null !default;
 /* Spacing */
 $spacer: 1rem !default;
 
-$headings-margin-bottom: $spacer / 2 !default;
+$headings-margin-bottom: calc($spacer / 2) !default;
 $headings-font-family: null !default;
 $headings-font-style: null !default;
 $headings-font-weight: 500 !default;
@@ -221,7 +221,7 @@ $btn-border-radius-lg: $border-radius-lg !default;
 $btn-border-radius-sm: $border-radius-sm !default;
 
 $btn-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
-    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out !default;
+  border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out !default;
 
 // !! alert
 $alert-border-radius: 0.4rem !default;
@@ -244,7 +244,7 @@ $alert-icon-font-size: $sub-sup-font-size;
 $menu-border-width: $border-width !default;
 $menu-border-color: $border-color !default;
 $menu-box-shadow: inset 0 1px 0 rgba($white, 0.15),
-    0 1px 1px rgba($black, 0.075) !default;
+  0 1px 1px rgba($black, 0.075) !default;
 $menu-transition: color 0.15s ease-in-out, border-color 0.15s ease-in-out !default;
 
 // menu-item
@@ -257,7 +257,7 @@ $menu-item-disabled-color: $gray-6 !default;
 // sub-menu
 // submenu
 $submenu-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.12),
-    0 0 6px 0 rgba(0, 0, 0, 0.04);
+  0 0 6px 0 rgba(0, 0, 0, 0.04);
 
 // tabs
 $tabs-border-width: $border-width !default;
@@ -265,7 +265,7 @@ $tabs-border-color: $border-color !default;
 $tabs-box-shadow: inset 0 1px 0 rgba($white, 0.15), 0 1px 1px rgba($black, 0.05) !default;
 
 $tabs-box-shadow-outline: inset 0 1px 0 rgba($white, 0.05),
-    inset 0 -1px 1px rgba($black, 0.05) !default;
+  inset 0 -1px 1px rgba($black, 0.05) !default;
 
 $tabs-label-padding-y: 0.5rem !default;
 $tabs-label-padding-x: 1rem !default;
@@ -277,7 +277,7 @@ $tabs-label-active-color: $primary !default;
 $tabs-label-active-border-width: 1px !default;
 $tabs-label-active-border-bottom-width: 1.5px !default;
 $tabs-label-active-box-shadow: inset 0 -1px 0 rgba($white, 0.15),
-    1px -1px 1px rgba($black, 0.05) !default;
+  1px -1px 1px rgba($black, 0.05) !default;
 
 $tabs-content-padding-y: 0.5rem !default;
 $tabs-content-padding-x: 1rem !default;
