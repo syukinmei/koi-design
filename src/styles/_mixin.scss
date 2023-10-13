@@ -1,0 +1,29 @@
+// 一些复用样式采用 【混合指令】 的形式
+@mixin button-size($px, $py, $font-size, $radius) {
+  padding: $py $px;
+  font-size: $font-size;
+  border-radius: $radius;
+}
+
+@mixin button-style(
+  $bg,
+  $border,
+  $color,
+  $hover-background: lighten($bg, 7.5%),
+  $hover-border: lighten($border, 10%),
+  $hover-color: $color
+) {
+  background: $bg;
+  border-color: $border;
+  color: $color;
+  &:hover {
+    background: $hover-background;
+    border-color: $hover-border;
+    color: $hover-color;
+  }
+  &[disabled] {
+    background: $bg;
+    border-color: $border;
+    // color: $color;
+  }
+}

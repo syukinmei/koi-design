@@ -17,7 +17,7 @@ interface BaseButtonProps {
   /**
    * 类型
    */
-  type?: "primart" | "default" | "danger" | "link";
+  type?: "primary" | "link" | "danger" | "default";
   /**
    * 子元素
    */
@@ -28,9 +28,12 @@ export const Button: React.FC<BaseButtonProps> = (props) => {
   const classes = classNames("btn", className, {
     [`btn-type-${type}`]: type,
     [`btn-size-${size}`]: size,
-    disabled: disabled,
   });
-  return <button className={classes}>{children}</button>;
+  return (
+    <button className={classes} disabled={disabled}>
+      {children}
+    </button>
+  );
 };
 
 Button.defaultProps = {
