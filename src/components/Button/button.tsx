@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import classNames from "classnames";
 
-interface BaseButtonProps {
+export interface BaseButtonProps {
   /**
    * 类名
    */
