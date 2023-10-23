@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import classNames from "classnames";
+import MenuContext from "./menuContext";
 import type { IMenuContext } from "./menuContext";
 
 export interface MemuProps extends IMenuContext {
@@ -12,17 +13,12 @@ export interface MemuProps extends IMenuContext {
    */
   style?: React.CSSProperties;
   /**
-   * 默认 active 的菜单项的索引值
-   */
-  //   defaultIndex?: number;
-  /**
    * 菜单模式
    */
   mode?: "vertical" | "horizontal";
   /**
-   *
+   * 子元素
    */
-  //   onSelect?: (selectedIndex: number) => void;
   children: React.ReactNode;
 }
 
@@ -35,11 +31,20 @@ export const Menu: React.FC<MemuProps> = (props) => {
     "menu-vertical": mode === "vertical",
   });
 
-  //   const passedContext
+  const handleClick = (index: number) => {
+    if (index === curActive) return;
+    setCurActive(index);
+    onSelect?.(index);
+  };
+
+  const contextVal: IMenuContext = {
+    defaultIndex: curActive,
+    onSelect: handleClick,
+  };
 
   return (
     <ul className={classes} style={style}>
-      {children}
+      <MenuContext.Provider value={contextVal}>{children}</MenuContext.Provider>
     </ul>
   );
 };

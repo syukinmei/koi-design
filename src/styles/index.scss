@@ -5,7 +5,10 @@
 @import "reboot";
 
 // minxin
-@import 'mixin';
+@import "mixin";
 
 // 按钮样式
 @import "../components/Button/style";
+
+// Menu 菜单样式
+@import "../components/Menu/style";
