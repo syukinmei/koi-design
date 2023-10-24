@@ -28,7 +28,7 @@ export const Menu: React.FC<MemuProps> = (props) => {
   const [curActive, setCurActive] = useState(defaultIndex);
 
   const classes = classNames("menu", className, {
-    "menu-vertical": mode === "vertical",
+    [`menu-mode-${mode}`]: mode,
   });
 
   const handleClick = (index: number) => {
@@ -55,3 +55,12 @@ Menu.defaultProps = {
 };
 
 export default Menu;
+
+// import React from "react";
+// import { render } from "@testing-library/react";
+
+// describe("Menu", () => {
+//   it("", () => {});
+//   it("click items should change active and call the right callback", () => {});
+//   it("should vertical mode be rendered when mode is set to vertical", () => {});
+// });
