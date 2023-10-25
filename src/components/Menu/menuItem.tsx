@@ -33,7 +33,6 @@ export const MenuItem: React.FC<MenuItemProps> = (props) => {
 
   const handleClick = () => {
     if (context.onSelect && !disabled) {
-      console.log("??????");
       context.onSelect(index);
     }
   };
@@ -43,3 +42,5 @@ export const MenuItem: React.FC<MenuItemProps> = (props) => {
     </li>
   );
 };
+
+export default MenuItem;
