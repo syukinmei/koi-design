@@ -19,7 +19,7 @@ export interface MemuProps extends IMenuContext {
   /**
    * 子元素
    */
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 export const Menu: React.FC<MemuProps> = (props) => {
@@ -43,7 +43,7 @@ export const Menu: React.FC<MemuProps> = (props) => {
   };
 
   return (
-    <ul className={classes} style={style}>
+    <ul className={classes} style={style} data-testid="test-menu">
       <MenuContext.Provider value={contextVal}>{children}</MenuContext.Provider>
     </ul>
   );
@@ -55,12 +55,3 @@ Menu.defaultProps = {
 };
 
 export default Menu;
-
-// import React from "react";
-// import { render } from "@testing-library/react";
-
-// describe("Menu", () => {
-//   it("", () => {});
-//   it("click items should change active and call the right callback", () => {});
-//   it("should vertical mode be rendered when mode is set to vertical", () => {});
-// });
