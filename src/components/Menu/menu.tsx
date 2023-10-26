@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import classNames from "classnames";
 import MenuContext from "./menuContext";
 import type { IMenuContext } from "./menuContext";
+import type { MenuItemProps } from "./menuItem";
 
 export interface MemuProps extends IMenuContext {
   /**
@@ -41,10 +42,28 @@ export const Menu: React.FC<MemuProps> = (props) => {
     defaultIndex: curActive,
     onSelect: handleClick,
   };
+  const renderChildren = () => {
+    return React.Children.map(children, (child) => {
+      const childElement =
+        child as React.FunctionComponentElement<MenuItemProps>;
 
+      const { displayName } = childElement.type;
+
+      // Confirm the type of a child component to allow only nested MenuItem components within it
+      if (displayName === "MenuItem") {
+        return child;
+      } else {
+        console.error(
+          "Warning: Menu has a child which is not a MenuItem component"
+        );
+      }
+    });
+  };
   return (
     <ul className={classes} style={style} data-testid="test-menu">
-      <MenuContext.Provider value={contextVal}>{children}</MenuContext.Provider>
+      <MenuContext.Provider value={contextVal}>
+        {renderChildren()}
+      </MenuContext.Provider>
     </ul>
   );
 };

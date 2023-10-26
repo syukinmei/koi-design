@@ -12,6 +12,7 @@ const generateMenu = (props: MemuProps) => {
         disabled
       </MenuItem>
       <MenuItem index={2}>MenuItem-2</MenuItem>
+      <li>一个不支持 Menu 的子节点</li>
     </Menu>
   );
 };
@@ -57,8 +58,8 @@ describe("Menu", () => {
 
   it("should horizontal mode be rendered when mode is set to horizontal", () => {
     cleanup();
-    const wrapper = render(generateMenu(testProps))
-    const menuElement = wrapper.getByTestId('test-menu')
-    expect(menuElement).toHaveClass('menu-mode-horizontal')
+    const wrapper = render(generateMenu(testProps));
+    const menuElement = wrapper.getByTestId("test-menu");
+    expect(menuElement).toHaveClass("menu-mode-horizontal");
   });
 });

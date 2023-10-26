@@ -2,7 +2,6 @@ import React from "react";
 import classNames from "classnames";
 import MenuContext from "./menuContext";
 
-// DetailedHTMLProps<LiHTMLAttributes<HTMLLIElement>
 export interface MenuItemProps {
   /**
    * 类名
@@ -25,7 +24,7 @@ export interface MenuItemProps {
 export const MenuItem: React.FC<MenuItemProps> = (props) => {
   const { className, disabled, index, children } = props;
   const context = React.useContext(MenuContext);
-  console.log("?", context);
+  // console.log("?", context);
   const classes = classNames("menu-item", className, {
     "is-disabled": disabled,
     "is-active": context.defaultIndex === index,
@@ -42,5 +41,7 @@ export const MenuItem: React.FC<MenuItemProps> = (props) => {
     </li>
   );
 };
+
+MenuItem.displayName = "MenuItem";
 
 export default MenuItem;
