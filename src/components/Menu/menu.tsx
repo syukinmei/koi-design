@@ -43,7 +43,7 @@ export const Menu: React.FC<MemuProps> = (props) => {
     onSelect: handleClick,
   };
   const renderChildren = () => {
-    return React.Children.map(children, (child) => {
+    return React.Children.map(children, (child, index) => {
       const childElement =
         child as React.FunctionComponentElement<MenuItemProps>;
 
@@ -51,7 +51,7 @@ export const Menu: React.FC<MemuProps> = (props) => {
 
       // Confirm the type of a child component to allow only nested MenuItem components within it
       if (displayName === "MenuItem") {
-        return child;
+        return React.cloneElement(childElement, { index });
       } else {
         console.error(
           "Warning: Menu has a child which is not a MenuItem component"

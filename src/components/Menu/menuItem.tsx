@@ -14,7 +14,7 @@ export interface MenuItemProps {
   /**
    *
    */
-  index: number;
+  index?: number;
   /**
    * 子元素
    */
@@ -32,7 +32,7 @@ export const MenuItem: React.FC<MenuItemProps> = (props) => {
 
   const handleClick = () => {
     if (context.onSelect && !disabled) {
-      context.onSelect(index);
+      context.onSelect(index!);
     }
   };
   return (
