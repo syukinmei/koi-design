@@ -49,8 +49,8 @@ export const Menu: React.FC<MemuProps> = (props) => {
 
       const { displayName } = childElement.type;
 
-      // Confirm the type of a child component to allow only nested MenuItem components within it
-      if (displayName === "MenuItem") {
+      // Verify the type of the child component to only allow nesting of MenuItem and SubMenu components.
+      if (displayName === "MenuItem" || displayName === "SubMenu") {
         return React.cloneElement(childElement, { index });
       } else {
         console.error(
