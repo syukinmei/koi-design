@@ -20,7 +20,15 @@ export interface MemuProps extends IMenuContext {
 }
 
 export const Menu: React.FC<MemuProps> = (props) => {
-  const { className, style, defaultKey, mode, onSelect, children } = props;
+  const {
+    className,
+    style,
+    defaultKey,
+    defaultOpenKeys,
+    mode,
+    onSelect,
+    children,
+  } = props;
 
   const [curActive, setCurActive] = useState(defaultKey);
 
@@ -38,7 +46,9 @@ export const Menu: React.FC<MemuProps> = (props) => {
     defaultKey: curActive,
     onSelect: handleClick,
     mode,
+    defaultOpenKeys,
   };
+
   const renderChildren = () => {
     return React.Children.map(children, (child, index) => {
       const childElement =
@@ -68,8 +78,8 @@ export const Menu: React.FC<MemuProps> = (props) => {
 };
 
 Menu.defaultProps = {
-  defaultKey: "0",
   mode: "vertical",
+  defaultOpenKeys: [],
 };
 
 export default Menu;

@@ -15,7 +15,11 @@ const SubMenu: React.FC<ISubMenuProps> = (props) => {
 
   const context = React.useContext(MenuContext);
 
-  const [menuOpen, setMenuOpen] = useState<boolean>(false);
+  const isOpend = !!(
+    context.mode === "vertical" && context.defaultOpenKeys?.includes(index!)
+  );
+
+  const [menuOpen, setMenuOpen] = useState<boolean>(isOpend);
 
   const classes = classNames("submenu-item", "menu-item", className, {
     "is-active": context.defaultKey === index,
@@ -23,7 +27,6 @@ const SubMenu: React.FC<ISubMenuProps> = (props) => {
 
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault();
-    console.log("handleClick", e);
     setMenuOpen(!menuOpen);
   };
 

@@ -6,6 +6,10 @@ export interface IMenuContext {
    */
   defaultKey?: string;
   /**
+   * 初始展开的 SubMenu 菜单项 key 数组
+   */
+  defaultOpenKeys?: string[];
+  /**
    * 点击事件，被选中时调用
    */
   onSelect?: (selectedIndex: string) => void;
@@ -15,8 +19,6 @@ export interface IMenuContext {
   mode?: "vertical" | "horizontal";
 }
 
-const MenuContext = createContext<IMenuContext>({
-  defaultKey: "0",
-});
+const MenuContext = createContext<IMenuContext>({});
 
 export default MenuContext;
