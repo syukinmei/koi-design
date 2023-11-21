@@ -53,72 +53,71 @@
   }
 }
 
-  .submenu-item {
-    position: relative;
+.submenu-item {
+  position: relative;
 
-    .submenu-title {
-      display: flex;
-      align-items: center;
-    }
+  .submenu-title {
+    display: flex;
+    align-items: center;
+  }
 
+  .arrow-icon {
+    transition: transform 0.25s ease-in-out;
+    margin-left: 3px;
+  }
+
+  &:hover {
     .arrow-icon {
-      transition: transform .25s ease-in-out;
-      margin-left: 3px;
+      transform: rotate(180deg);
     }
+  }
+}
 
+.is-vertical {
+  .arrow-icon {
+    transform: rotate(0deg) !important;
+  }
+}
+
+.is-vertical .submenu-open {
+  .arrow-icon {
+    transform: rotate(180deg) !important;
+  }
+}
+
+.submenu {
+  display: none; // 使用CSSTransition.unmountOnExit 属性后
+  list-style: none;
+  padding-left: 0;
+  white-space: nowrap;
+
+  //transition: $menu-transition;
+  .menu-item {
+    padding: $menu-item-padding-y $menu-item-padding-x;
+    cursor: pointer;
+    transition: $menu-transition;
+    color: $body-color;
+
+    &.is-active,
     &:hover {
-      .arrow-icon {
-        transform: rotate(180deg);
-      }
+      color: $menu-item-active-color !important;
     }
   }
+}
 
-  .is-vertical {
-    .arrow-icon {
-      transform: rotate(0deg) !important;
-    }
-  }
+.submenu.submenu-open {
+  display: block; // 使用CSSTransition.unmountOnExit 属性后
+}
 
-  .is-vertical .submenu-open {
-    .arrow-icon {
-      transform: rotate(180deg) !important;
-    }
-  }
-
+.menu-mode-horizontal {
   .submenu {
-    display: none; // 使用CSSTransition.unmountOnExit 属性后
-    list-style: none;
-    padding-left: 0;
-    white-space: nowrap;
-
-    //transition: $menu-transition;
-    .menu-item {
-      padding: $menu-item-padding-y $menu-item-padding-x;
-      cursor: pointer;
-      transition: $menu-transition;
-      color: $body-color;
-
-      &.is-active,
-      &:hover {
-        color: $menu-item-active-color !important;
-      }
-    }
+    position: absolute;
+    min-width: 100%;
+    background: $white;
+    z-index: 100;
+    top: calc(100% + 8px);
+    left: 0;
+    border: $menu-border-width solid $menu-border-color;
+    box-shadow: $submenu-box-shadow;
   }
-
-  .submenu.submenu-open {
-    display: block; // 使用CSSTransition.unmountOnExit 属性后
-  }
-
-
-  .menu-mode-horizontal {
-    .submenu {
-      position: absolute;
-      min-width: 100%;
-      background: $white;
-      z-index: 100;
-      top: calc(100% + 8px);
-      left: 0;
-      border: $menu-border-width solid $menu-border-color;
-      box-shadow: $submenu-box-shadow;
-    }
-  }
+}

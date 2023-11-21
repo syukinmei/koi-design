@@ -49,11 +49,11 @@ describe("Menu", () => {
     const MenuItem2Item = wrapper.getByText("MenuItem-2");
     fireEvent.click(MenuItem2Item);
     expect(MenuItem2Item).toHaveClass("is-active");
-    expect(testProps.onSelect).toHaveBeenCalledWith('2');
+    expect(testProps.onSelect).toHaveBeenCalledWith("2");
 
     fireEvent.click(disabledElement);
     expect(disabledElement).not.toHaveClass("is-active");
-    expect(testProps.onSelect).not.toHaveBeenCalledWith('1');
+    expect(testProps.onSelect).not.toHaveBeenCalledWith("1");
   });
 
   it("should horizontal mode be rendered when mode is set to horizontal", () => {
