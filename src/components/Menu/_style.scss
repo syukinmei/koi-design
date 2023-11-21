@@ -24,16 +24,24 @@
   flex-direction: row;
   border-bottom: $menu-border-width solid $menu-border-color;
   box-shadow: $menu-box-shadow;
-  & > .menu-item {
-    &.is-active,
-    &:hover {
-      border-bottom: $menu-item-active-border-width solid
-        $menu-item-active-color;
-    }
+
+  > .menu-item {
+    border-bottom: $menu-item-active-border-width solid transparent;
+  }
+
+  > .menu-item.is-active,
+  > .menu-item:hover {
+    border-bottom: $menu-item-active-border-width solid $menu-item-active-color;
+  }
+
+  // menu-item 其子节点中具有类名为 .submenu 的子节点，并且该子节点具有类名为 .menu-item 和 .is-active 的元素
+  .menu-item:has(> .submenu > .menu-item.is-active) {
+    border-bottom: $menu-item-active-border-width solid $menu-item-active-color;
   }
 }
 .menu-mode-vertical {
   flex-direction: column;
+  margin: 10px 20px;
   border-right: $menu-border-width solid $menu-border-color;
   & > .menu-item {
     border-left: $menu-item-active-border-width solid transparent;
@@ -71,14 +79,14 @@
     }
   }
 
-  .is-vertical .is-opened {
+  .is-vertical .submenu-open {
     .arrow-icon {
       transform: rotate(180deg) !important;
     }
   }
 
   .submenu {
-    // display: none; // 使用CSSTransition.unmountOnExit 属性后
+    display: none; // 使用CSSTransition.unmountOnExit 属性后
     list-style: none;
     padding-left: 0;
     white-space: nowrap;
@@ -97,18 +105,15 @@
     }
   }
 
-  .viking-submenu.menu-opened {
-    // display: block; // 使用CSSTransition.unmountOnExit 属性后
+  .submenu.submenu-open {
+    display: block; // 使用CSSTransition.unmountOnExit 属性后
   }
 
 
   .menu-mode-horizontal {
-    >.menu-item {
-      border-bottom: $menu-item-active-border-width solid transparent;
-    }
     .submenu {
-      background-color: red;
       position: absolute;
+      min-width: 100%;
       background: $white;
       z-index: 100;
       top: calc(100% + 8px);
@@ -117,16 +122,3 @@
       box-shadow: $submenu-box-shadow;
     }
   }
-  .menu-mode-vertical {
-    flex-direction: column;
-    border-bottom: 0px;
-    margin: 10px 20px;
-    border-right: $menu-border-width solid $menu-border-color;
-    >.menu-item {
-      border-left: $menu-item-active-border-width solid transparent;
-      &.is-active, &:hover {
-        border-bottom: 0px;
-        border-left: $menu-item-active-border-width solid $menu-item-active-color;
-      }
-    }
-}

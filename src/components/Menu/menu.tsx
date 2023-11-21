@@ -14,33 +14,30 @@ export interface MemuProps extends IMenuContext {
    */
   style?: React.CSSProperties;
   /**
-   * 菜单模式
-   */
-  mode?: "vertical" | "horizontal";
-  /**
    * 子元素
    */
   children?: React.ReactNode;
 }
 
 export const Menu: React.FC<MemuProps> = (props) => {
-  const { className, style, defaultIndex, mode, onSelect, children } = props;
+  const { className, style, defaultKey, mode, onSelect, children } = props;
 
-  const [curActive, setCurActive] = useState(defaultIndex);
+  const [curActive, setCurActive] = useState(defaultKey);
 
   const classes = classNames("menu", className, {
     [`menu-mode-${mode}`]: mode,
   });
 
-  const handleClick = (index: number) => {
+  const handleClick = (index: string) => {
     if (index === curActive) return;
     setCurActive(index);
     onSelect?.(index);
   };
 
   const contextVal: IMenuContext = {
-    defaultIndex: curActive,
+    defaultKey: curActive,
     onSelect: handleClick,
+    mode,
   };
   const renderChildren = () => {
     return React.Children.map(children, (child, index) => {
@@ -51,7 +48,9 @@ export const Menu: React.FC<MemuProps> = (props) => {
 
       // Verify the type of the child component to only allow nesting of MenuItem and SubMenu components.
       if (displayName === "MenuItem" || displayName === "SubMenu") {
-        return React.cloneElement(childElement, { index });
+        return React.cloneElement(childElement, {
+          index: index.toString(),
+        });
       } else {
         console.error(
           "Warning: Menu has a child which is not a MenuItem component"
@@ -69,7 +68,7 @@ export const Menu: React.FC<MemuProps> = (props) => {
 };
 
 Menu.defaultProps = {
-  defaultIndex: 0,
+  defaultKey: "0",
   mode: "vertical",
 };
 

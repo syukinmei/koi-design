@@ -7,18 +7,18 @@ import MenuItem from "./menuItem";
 const generateMenu = (props: MemuProps) => {
   return (
     <Menu {...props}>
-      <MenuItem index={0}>active</MenuItem>
-      <MenuItem index={1} disabled>
+      <MenuItem index={"0"}>active</MenuItem>
+      <MenuItem index={"1"} disabled>
         disabled
       </MenuItem>
-      <MenuItem index={2}>MenuItem-2</MenuItem>
+      <MenuItem index={"2"}>MenuItem-2</MenuItem>
       <li>一个不支持 Menu 的子节点</li>
     </Menu>
   );
 };
 
 const testProps: MemuProps = {
-  defaultIndex: 0,
+  defaultKey: "0",
   mode: "horizontal",
   className: "hello-koi-class-name",
   onSelect: jest.fn(),
@@ -49,11 +49,11 @@ describe("Menu", () => {
     const MenuItem2Item = wrapper.getByText("MenuItem-2");
     fireEvent.click(MenuItem2Item);
     expect(MenuItem2Item).toHaveClass("is-active");
-    expect(testProps.onSelect).toHaveBeenCalledWith(2);
+    expect(testProps.onSelect).toHaveBeenCalledWith('2');
 
     fireEvent.click(disabledElement);
     expect(disabledElement).not.toHaveClass("is-active");
-    expect(testProps.onSelect).not.toHaveBeenCalledWith(1);
+    expect(testProps.onSelect).not.toHaveBeenCalledWith('1');
   });
 
   it("should horizontal mode be rendered when mode is set to horizontal", () => {

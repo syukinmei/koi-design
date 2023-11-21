@@ -14,7 +14,7 @@ export interface MenuItemProps {
   /**
    *
    */
-  index?: number;
+  index?: string;
   /**
    * 子元素
    */
@@ -27,11 +27,12 @@ export const MenuItem: React.FC<MenuItemProps> = (props) => {
   // console.log("?", context);
   const classes = classNames("menu-item", className, {
     "is-disabled": disabled,
-    "is-active": context.defaultIndex === index,
+    "is-active": context.defaultKey === index,
   });
 
   const handleClick = () => {
     if (context.onSelect && !disabled) {
+      console.log("--handleClick", index);
       context.onSelect(index!);
     }
   };

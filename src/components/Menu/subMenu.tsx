@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import classNames from "classnames";
 import MenuContext from "./menuContext";
 import type { MenuItemProps } from "./menuItem";
 
 export interface ISubMenuProps {
-    index?: number;
+    index?: string;
     title: string;
     className?: string;
     children: React.ReactNode;
@@ -12,14 +12,49 @@ export interface ISubMenuProps {
 
 const SubMenu: React.FC<ISubMenuProps> = (props) => {
     const { index, title, children, className } = props;
+
     const context = React.useContext(MenuContext);
 
+    const [menuOpen, setMenuOpen] = useState<boolean>(false);
+
     const classes = classNames("submenu-item",'menu-item', className, {
-        "is-active": context.defaultIndex === index,
+        "is-active": context.defaultKey === index,
     });
 
+    const handleClick = (e: React.MouseEvent) => {
+        e.preventDefault();
+        console.log("handleClick", e);
+        setMenuOpen(!menuOpen);
+    };
+    
+    let timer: any;
+    const handleMouse = (e: React.MouseEvent, toggle: boolean) => {
+        clearTimeout(timer);
+        timer = setTimeout(() => {
+            setMenuOpen(toggle);
+        }, 200);
+    };
+
+    const clickEvents =
+        context.mode === "vertical" ? { onClick: handleClick } : {};
+        
+    const hoverEvents =
+        context.mode === "horizontal"
+        ? {
+            onMouseEnter: (e: React.MouseEvent) => {
+                handleMouse(e, true);
+            },
+            onMouseLeave: (e: React.MouseEvent) => {
+                handleMouse(e, false);
+            },
+            }
+        : {};
+
     const renderChildren = () => {
-        const childrenComponent = React.Children.map(children, (child) => {
+        const subMenuClasses = classNames('submenu',{
+            'submenu-open':menuOpen
+        })
+        const childrenComponent = React.Children.map(children, (child, i) => {
             const childElement =
                 child as React.FunctionComponentElement<MenuItemProps>;
 
@@ -27,19 +62,19 @@ const SubMenu: React.FC<ISubMenuProps> = (props) => {
 
             // Confirm the type of a child component to allow only nested MenuItem components within it
             if (displayName === "MenuItem") {
-                return childElement;
+                return React.cloneElement(childElement,{index:`${index}-${i}`})
             } else {
                 console.error(
                     "Warning: SubMenu has a child which is not a MenuItem component"
                 );
             }
         });
-        return <ul className="submenu">{childrenComponent}</ul>;
+        return <ul className={subMenuClasses}>{childrenComponent}</ul>;
     };
 
     return (
-        <li key={index} className={classes}>
-            <div className="submenu-title"><span>{title}</span></div>
+        <li key={index} className={classes} {...hoverEvents}>
+            <div className="submenu-title" {...clickEvents}><span>{title}</span></div>
             {renderChildren()}
         </li>
     );
